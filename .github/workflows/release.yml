@@ -1,0 +1,19 @@
+name: Release
+on:
+  release:
+    types:
+      - published
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  publish:
+    name: Publish
+    uses: ./.github/workflows/publish.yml
+    permissions:
+      packages: write
+    secrets: inherit
+    with:
+      tags: ${{ github.event.release.tag_name }},latest
