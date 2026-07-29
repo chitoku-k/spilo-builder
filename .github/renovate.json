@@ -18,6 +18,25 @@
         "jobs.*.strategy.matrix.include.platform[label].{\"depName\": $substringBefore(label, \"-\"), \"currentValue\": $substringAfter(label, \"-\")}"
       ],
       "datasourceTemplate": "github-runners"
+    },
+    {
+      "customType": "jsonata",
+      "fileFormat": "yaml",
+      "managerFilePatterns": [".github/workflows/*.yml"],
+      "matchStrings": [
+        "jobs.*.steps[*].with[repository][ref].{\"packageName\": repository, \"currentValue\": ref}"
+      ],
+      "datasourceTemplate": "github-tags"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["README.md"],
+      "matchStrings": [
+        "\\|\\s*(?<major>\\d+)\\s*\\|\\s*(?<suite>\\w+-pgdg)\\s*\\|\\s*(?<currentValue>[^\\s]+)\\s*\\|"
+      ],
+      "registryUrlTemplate": "http://apt.postgresql.org/pub/repos/apt/?suite={{suite}}&components=main&binaryArch=amd64",
+      "datasourceTemplate": "deb",
+      "depNameTemplate": "postgresql-{{major}}"
     }
   ],
   "packageRules": [
@@ -28,6 +47,11 @@
     {
       "matchDatasources": ["github-runners"],
       "addLabels": ["github_actions"]
+    },
+    {
+      "matchDatasources": ["deb"],
+      "matchUpdateTypes": "major",
+      "enabled": false
     },
     {
       "matchDepNames": ["*"],
