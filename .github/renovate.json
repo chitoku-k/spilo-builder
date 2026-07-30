@@ -54,6 +54,10 @@
       "enabled": false
     },
     {
+      "matchDatasources": ["deb"],
+      "groupName": "postgresql"
+    },
+    {
       "matchDepNames": ["*"],
       "commitMessageAction": "Bump",
       "commitMessageExtra": "",
