@@ -61,7 +61,7 @@
       "matchDepNames": ["*"],
       "commitMessageAction": "Bump",
       "commitMessageExtra": "",
-      "commitMessageSuffix": "from {{currentVersion}} to {{newVersion}}",
+      "commitMessageSuffix": "{{#if isGroup}}versions{{else}}from {{currentVersion}} to {{newVersion}}{{/if}}",
       "commitMessageTopic": "{{depName}}"
     }
   ]
