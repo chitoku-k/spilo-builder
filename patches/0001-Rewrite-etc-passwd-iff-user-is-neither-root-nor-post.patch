@@ -1,0 +1,25 @@
+From 35aba7720ff521690c53945e765a8366dd88b27f Mon Sep 17 00:00:00 2001
+From: Chitoku <odango@chitoku.jp>
+Date: Sun, 25 Oct 2026 19:35:09 +0900
+Subject: [PATCH] Rewrite /etc/passwd iff user is neither root nor postgres
+
+---
+ postgres-appliance/launch.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/postgres-appliance/launch.sh b/postgres-appliance/launch.sh
+index 07f1747..7dad606 100755
+--- a/postgres-appliance/launch.sh
++++ b/postgres-appliance/launch.sh
+@@ -25,7 +25,7 @@ else
+ fi
+ 
+ mkdir -p "$PGLOG" "$PGDATA" "$RW_DIR/postgresql" "$RW_DIR/tmp" "$RW_DIR/certs"
+-if [ "$(id -u)" -ne 0 ]; then
++if [ "$(id -u)" -ne 0 ] && [ "$(id -u)" -ne "$(id -u postgres)" ]; then
+     sed -e "s/^postgres:x:[^:]*:[^:]*:/postgres:x:$(id -u):$(id -g):/" /etc/passwd > "$RW_DIR/tmp/passwd"
+     cat "$RW_DIR/tmp/passwd" > /etc/passwd
+     rm "$RW_DIR/tmp/passwd"
+-- 
+2.56.0
+
