@@ -1,0 +1,22 @@
+From ff5726b6fc07b3e19c076090fd43893d017fd781 Mon Sep 17 00:00:00 2001
+From: Polina Bungina <27892524+hughcapet@users.noreply.github.com>
+Date: Tue, 6 Oct 2026 17:29:02 +0200
+Subject: [PATCH] Update bg_mon commit to include bugfix (#1216)
+
+---
+ postgres-appliance/Dockerfile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/postgres-appliance/Dockerfile b/postgres-appliance/Dockerfile
+index c4040f27c..dc3997640 100644
+--- a/postgres-appliance/Dockerfile
++++ b/postgres-appliance/Dockerfile
+@@ -53,7 +53,7 @@ ARG DEB_PG_SUPPORTED_VERSIONS="$PGOLDVERSIONS $PGVERSION"
+ 
+ # Install PostgreSQL, extensions and contribs
+ ENV POSTGIS_VERSION=3.6 \
+-    BG_MON_COMMIT=a73c6bcd10dfdf9feaf5eabab7eb6b12d167680d \
++    BG_MON_COMMIT=c44fa1dd0cd5346e462c54dfd2f97d3f25c299d6 \
+     PG_AUTH_MON_COMMIT=fe099eef7662cbc85b0b79191f47f52f1e96b779 \
+     PG_MON_COMMIT=88ac7b58348aa061c814982defc170644f368f39 \
+     PLPROFILER=REL4_2_5 \

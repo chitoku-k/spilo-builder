@@ -1,0 +1,22 @@
+From d7939264c60d76f02e1505102bb04f2bfb8bb144 Mon Sep 17 00:00:00 2001
+From: Polina Bungina <27892524+hughcapet@users.noreply.github.com>
+Date: Thu, 5 Nov 2026 16:44:23 +0100
+Subject: [PATCH] PostGIS 3.7 (#1238)
+
+---
+ postgres-appliance/Dockerfile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/postgres-appliance/Dockerfile b/postgres-appliance/Dockerfile
+index 017817c2a..00a78f0f9 100644
+--- a/postgres-appliance/Dockerfile
++++ b/postgres-appliance/Dockerfile
+@@ -52,7 +52,7 @@ ARG WITH_PERL=false
+ ARG DEB_PG_SUPPORTED_VERSIONS="$PGOLDVERSIONS $PGVERSION"
+ 
+ # Install PostgreSQL, extensions and contribs
+-ENV POSTGIS_VERSION=3.6 \
++ENV POSTGIS_VERSION=3.7 \
+     BG_MON_COMMIT=c44fa1dd0cd5346e462c54dfd2f97d3f25c299d6 \
+     PG_AUTH_MON_COMMIT=fe099eef7662cbc85b0b79191f47f52f1e96b779 \
+     PG_MON_COMMIT=88ac7b58348aa061c814982defc170644f368f39 \
