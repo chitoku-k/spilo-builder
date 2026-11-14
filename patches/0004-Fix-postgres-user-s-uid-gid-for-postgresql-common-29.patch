@@ -1,0 +1,31 @@
+From fc51c127493ef18ad5776d17929120a34318d121 Mon Sep 17 00:00:00 2001
+From: Chitoku <odango@chitoku.jp>
+Date: Sat, 14 Nov 2026 20:59:09 +0900
+Subject: [PATCH] Fix postgres user's uid:gid for postgresql-common >= 294
+
+---
+ postgres-appliance/build_scripts/base.sh | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/postgres-appliance/build_scripts/base.sh b/postgres-appliance/build_scripts/base.sh
+index bc4633d..e52a50e 100644
+--- a/postgres-appliance/build_scripts/base.sh
++++ b/postgres-appliance/build_scripts/base.sh
+@@ -55,6 +55,14 @@ curl -sL "https://github.com/CyberDem0n/bg_mon/archive/$BG_MON_COMMIT.tar.gz" |
+ curl -sL "https://github.com/zalando-pg/pg_auth_mon/archive/$PG_AUTH_MON_COMMIT.tar.gz" | tar xz
+ curl -sL "https://github.com/zubkov-andrei/pg_profile/archive/$PG_PROFILE.tar.gz" | tar xz
+ 
++mkdir -p /usr/lib/sysusers.d
++cat <<EOF > /usr/lib/sysusers.d/postgresql-common.conf
++g postgres 103
++u postgres 101:103 "PostgreSQL administrator" /var/lib/postgresql /bin/bash
++EOF
++apt-get install -y systemd-standalone-sysusers systemd-standalone-tmpfiles
++systemd-sysusers
++
+ apt-get install -y \
+     postgresql-common \
+     libevent-2.1 \
+-- 
+2.56.1
+
