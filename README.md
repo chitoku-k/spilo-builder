@@ -7,7 +7,7 @@ This repository builds [zalando/spilo].
 
 | PostgreSQL | Suite      | Package             |
 |------------|------------|---------------------|
-| 18         | jammy-pgdg | 18.7-1.pgdg22.04+2 |
+| 18         | jammy-pgdg | 18.7-1.pgdg22.04+5 |
 | 17         | jammy-pgdg | 17.12-1.pgdg22.04+1 |
 | 16         | jammy-pgdg | 16.16-1.pgdg22.04+1 |
 | 15         | jammy-pgdg | 15.20-1.pgdg22.04+1 |
